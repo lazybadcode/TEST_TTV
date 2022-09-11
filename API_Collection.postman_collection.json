@@ -1,0 +1,180 @@
+{
+	"info": {
+		"_postman_id": "9292aa74-df61-4c2c-a8d1-d0b4b96beee2",
+		"name": "API_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2117037"
+	},
+	"item": [
+		{
+			"name": "http://localhost:9000/api/get_slot_allocated_number_by_car_size",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"car_type\" : \"medium\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/get_slot_allocated_number_by_car_size",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"get_slot_allocated_number_by_car_size"
+					]
+				},
+				"description": "get_slot_allocated_number_by_car_size"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9000/api/get_plate_number_by_car_size",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"car_type\" : \"medium\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/get_plate_number_by_car_size",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"get_plate_number_by_car_size"
+					]
+				},
+				"description": "get_plate_number_by_car_size"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9000/api/get_parking_status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/api/get_parking_status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"get_parking_status"
+					]
+				},
+				"description": "get_parking_status"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9000/api/leave_the_slot",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"car_no\" : \"Q002\" ,\r\n\"parkingName\" : \"t1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/leave_the_slot",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"leave_the_slot"
+					]
+				},
+				"description": "leave_the_slot"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9000/api/park_the_car",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"car_no\" : \"Q002\" ,\r\n  \"car_type\" : \"medium\",\r\n  \"parkingName\" : \"t1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/park_the_car",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"park_the_car"
+					]
+				},
+				"description": "park_the_car"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9000/api/create_parking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"parkingName\" : \"t1\", \"totalSlot\" : 10}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9000/api/create_parking",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"create_parking"
+					]
+				},
+				"description": "create_parking"
+			},
+			"response": []
+		}
+	]
+}

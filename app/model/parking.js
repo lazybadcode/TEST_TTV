@@ -1,4 +1,3 @@
-const Slot = require('./slot')
 class Parking{
     
     constructor({parking_id, name, total_slot}){

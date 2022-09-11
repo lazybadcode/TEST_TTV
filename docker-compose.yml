@@ -1,0 +1,15 @@
+version: '3'
+services:
+  TTV-Car:
+    image: [accountNo].dkr.ecr.ap-southeast-1.amazonaws.com/ttv-car:latest
+    environment:
+      - PORT=${PORT}
+      - TIME_ZONE=${TIME_ZONE}
+    ports:
+      - "9000:9000"
+    logging:
+      driver: awslogs
+      options: 
+        awslogs-group: TTV/Car
+        awslogs-region: ap-southeast-1
+        awslogs-stream-prefix: TTV

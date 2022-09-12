@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const apiController = require('../api/api.controller');
-const service = require("../services/service");
 const Ticket = require('../model/Ticket');
 
 // {"parkingName" : "Park2", "totalSlot" : 10}
 router.post('/create_parking',  async (req, res) => {
     try {
-
-        let park = await apiController.create_parking(req);
+        const task = req.body.task
+        console.log(` create_parking ` + JSON.stringify(task))
+        let park = await apiController.create_parking(task);
 
         if (park === "ParkName is alrady exist"){
             res.json({ error: "ParkName is alrady exist" });
@@ -16,13 +16,13 @@ router.post('/create_parking',  async (req, res) => {
             res.json({ error: "Car Parking is allow minimun 10 slots" });
         }
         else{
-            let slot = await apiController.create_parking_slot(park.insertId, req.body.totalSlot)
+            let slot = await apiController.create_parking_slot(park.insertId, task.totalSlot)
 
             if(slot === "Car Parking is allow minimun 10 slots"){
                 res.json({ error: "Car Parking is allow minimun 10 slots" });
                 
             }else{
-                let parkingInfo = await apiController.get_parking_info(req.body.parkingName)
+                let parkingInfo = await apiController.get_parking_info(task.parkingName)
                 res.json({ result : parkingInfo});
             }
         }
@@ -39,19 +39,21 @@ router.post('/create_parking',  async (req, res) => {
 // }
 router.post('/park_the_car',  async (req, res) => {
     try {
+        const task = req.body.task
 
-        let ticket_info = await apiController.get_ticketid_by_carno(req.body.car_no)
-        //console.log(JSON.stringify(ticket_info))
+        console.log(` park_the_car ` + JSON.stringify(task))
+        let ticket_info = await apiController.get_ticketid_by_carno(task.car_no)
+        
         if(ticket_info){
             if ( ticket_info.count >= 1) {
                      return res.json({ error: "Dupplicate Car regist number" });
                 }
         }
 
-        let ticketInfo = await apiController.get_parking_ticket(req);
+        let ticketInfo = await apiController.get_parking_ticket(task);
 
 
-        let ticket = new Ticket({ticket_id : "T001", parking_name: ticketInfo.parking_name,  slot_id : ticketInfo.slot_no , car_no : req.body.car_no , car_type : req.body.car_type, entry_date : new Date(), exit_date : null })
+        let ticket = new Ticket({ticket_id : "T001", parking_name: ticketInfo.parking_name,  slot_id : ticketInfo.slot_no , car_no : task.car_no , car_type : task.car_type, entry_date : new Date(), exit_date : null })
         
         // set slot to not avialable
         // insert into tickets
@@ -68,16 +70,17 @@ router.post('/park_the_car',  async (req, res) => {
 
 router.post('/leave_the_slot',  async (req, res) => {
     try {
-
+        const task = req.body.task
+        console.log(` leave_the_slot ` + JSON.stringify(task))
         // validate car no
-        let ticket_info = await apiController.get_ticketid_by_carno(req.body.car_no)
-        console.log(JSON.stringify(ticket_info))
+        let ticket_info = await apiController.get_ticketid_by_carno(task.car_no)
+        
         if(ticket_info){
             if ( ticket_info.count > 1) {
                      return res.json({ error: "Dupplicate Car regist number" });
                 }
         }
-        console.log("eee " + JSON.stringify(ticket_info))
+        
         //update ticket exit date and available slot
         await apiController.leave_the_slot(ticket_info.ticket_no)
 
@@ -109,8 +112,9 @@ router.get('/get_parking_status',  async (req, res) => {
 
 router.post('/get_plate_number_by_car_size',  async (req, res) => {
     try {
-       
-        let carNoList = await apiController.get_plate_number_by_car_size(req.body.car_type)
+        const task = req.body.task
+        console.log(` get_plate_number_by_car_size ` + JSON.stringify(task))
+        let carNoList = await apiController.get_plate_number_by_car_size(task.car_type)
             
         res.json({ result : carNoList});
         
@@ -123,8 +127,9 @@ router.post('/get_plate_number_by_car_size',  async (req, res) => {
 
 router.post('/get_slot_allocated_number_by_car_size',  async (req, res) => {
     try {
-       
-        let slotAllocated = await apiController.get_slot_allocated_number_by_car_size(req.body.car_type)
+        const task = req.body.task
+        console.log(` get_slot_allocated_number_by_car_size ` + JSON.stringify(task))
+        let slotAllocated = await apiController.get_slot_allocated_number_by_car_size(task.car_type)
             
         res.json({ result : slotAllocated});
         

@@ -1,24 +1,18 @@
-const Parking = require('../model/parking')
-const {rando} = require('@nastyox/rando.js');
-const Slot = require('../model/slot');
 const service = require("../services/service");
-
-
-
 
 exports.create_parking = async (req) => {
     console.log("create_parking api")
 
-    let countParkName = await service.getParkingByName(req.body.parkingName, req.body.totalSlot);
+    let countParkName = await service.getParkingByName(req.parkingName, req.totalSlot);
 
     // NOt allow to create dupplicate park name 
     if(countParkName.count > 0){
         return "ParkName is alrady exist"
     }
-    else if(req.body.totalSlot < 10){
+    else if(req.totalSlot < 10){
         return "Car Parking is allow minimun 10 slots"
     }else{
-        return await service.insertParking(req.body.parkingName, req.body.totalSlot)
+        return await service.insertParking(req.parkingName, req.totalSlot)
     }
     
 };
@@ -51,8 +45,8 @@ exports.get_parking_info = async (parkingName) => {
 
 
 exports.get_parking_ticket = async (req) => {
-    if(req.body.parkingName)
-        return await service.getParkingTicket(req.body.parkingName)
+    if(req.parkingName)
+        return await service.getParkingTicket(req.parkingName)
     else
         return 0
    

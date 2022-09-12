@@ -235,7 +235,7 @@ async function getInfoByTicketId(ticket_no) {
 async function getParkingStatus() {
     try {
         let pool = await aConnMysql.getPool();
-        let aSql = `select p.parking_name, s.slot_no, IF(s.is_available = 1, "YES", "NO") is_available  
+        let aSql = `select p.parking_id, p.parking_name, s.slot_no, IF(s.is_available = 1, "YES", "NO") is_available  
         from parking p left join slots s on p.parking_id = s.park_id  order by  p.parking_name, is_available desc; `
         
         return new Promise((resolve, reject) => {

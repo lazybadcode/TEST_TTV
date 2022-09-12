@@ -1,0 +1,372 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Car Parking API project to demonstrate Swagger Documentation",
+        "version": "1.0.0",
+        "title": "Car Parking API",
+        "contact": {
+            "email": "thammarath014@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "schemes": ["http"],
+    "host": "localhost:9000",
+    "basePath": "/api",
+    "paths" : {
+        "/create_parking" : {
+            "post" : {
+                "summary" : "create car parking",
+                "description": "create car parking ** Minimum total slot is 10 slots",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Car object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "task" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/body_create_parking"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/todosResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/park_the_car" : {
+            "post" : {
+                "summary" : "Park the car",
+                "description": "Park the car",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Car object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "task" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/body_park_the_car"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/todosResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/leave_the_slot" : {
+            "post" : {
+                "summary" : "Leave from slot",
+                "description": "Leave from slot",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Car object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "task" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/body_leave_the_slot"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/todosResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/get_parking_status" : {
+            "get" : {
+                "summary" : "Get parking status",
+                "description": "Get parking status",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/todosResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/get_plate_number_by_car_size" : {
+            "post" : {
+                "summary" : "Get plate number",
+                "description": "Get plate number by car size",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Car object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "task" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/body_get_plate_number_by_car_size"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/plateNumberResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/get_slot_allocated_number_by_car_size" : {
+            "post" : {
+                "summary" : "Get slot allocated",
+                "description": "Get slot allocated by car size",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Car object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "task" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/body_get_slot_allocated_number_by_car_size"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/slotNumberResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        }
+    }, 
+    "definitions": {
+        "todosResponse": {
+            "type": "object",
+            "properties": {
+                "parking_id": {
+                     "type": "integer"
+                },
+                "parking_name": {
+                    "type": "string"
+                },
+                "slot_no": {
+                    "type": "string"
+                },
+                "is_available": {
+                    "type": "string"
+                }
+            }
+        },
+        "slotNumberResponse": {
+            "type": "object",
+            "properties": {
+                "parking_name": {
+                    "type": "string"
+                },
+                "slot_no": {
+                    "type": "string"
+                },
+                "is_available": {
+                    "type": "string"
+                },
+                "car_type": {
+                    "type": "string"
+                }
+            }
+        },
+        "plateNumberResponse": {
+            "type": "object",
+            "properties": {
+                "car_regist_no": {
+                     "type": "integer"
+                },
+                "slot_no": {
+                    "type": "string"
+                },
+                "car_type": {
+                    "type": "string"
+                },
+                "entry_date": {
+                    "type": "string"
+                }
+            }
+        },
+        "body_create_parking": {
+            "type": "object",
+            "properties": {
+                "parkingName": {
+                    "type": "string"
+                },
+                "totalSlot": {
+                    "type": "integer"
+                }
+            }
+        },
+        "body_park_the_car": {
+            "type": "object",
+            "properties": {
+                "car_no": {
+                    "type": "string"
+                },
+                "car_type": {
+                    "type": "string"
+                },
+                "parkingName": {
+                    "type": "string"
+                }
+            }
+        },
+        "body_leave_the_slot": {
+            "type": "object",
+            "properties": {
+                "car_no": {
+                    "type": "string"
+                },
+                "parkingName": {
+                    "type": "string"
+                }
+            }
+        },
+        "body_get_plate_number_by_car_size": {
+            "type": "object",
+            "properties": {
+                "car_type": {
+                    "type": "string"
+                }
+            }
+        },
+        "body_get_slot_allocated_number_by_car_size": {
+            "type": "object",
+            "properties": {
+                "car_type": {
+                    "type": "string"
+                }
+            }
+        },
+        "InvalidResponse": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+
+        }
+    }
+}

@@ -4,7 +4,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app"
+    "dev": "nodemon app",
+    "test": "jest"
   },
   "author": "Thammarath P.",
   "license": "ISC",
@@ -26,5 +27,9 @@
   "directories": {
     "test": "test"
   },
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "jest": "^29.0.3",
+    "supertest": "^6.2.4"
+  }
 }
